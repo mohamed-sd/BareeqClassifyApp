@@ -30,7 +30,7 @@ class AppSettings {
   static const String androidPackageName = 'sd.bareeq.ads';
   static const String shareAppText = "Share this App";
 
-  static const String demoUrl = "https://eclassify.wrteam.me";
+  static const String demoUrl = "https://admin.mining-market.com/";
 
   ///API Setting
 
