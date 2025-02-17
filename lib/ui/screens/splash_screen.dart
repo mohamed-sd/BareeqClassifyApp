@@ -190,10 +190,10 @@ class SplashScreenState extends State<SplashScreen>
                 ),
                 child: Scaffold(
                   backgroundColor: context.color.territoryColor,
-                  bottomNavigationBar: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: UiUtils.getSvg(AppIcons.companyLogo),
-                  ),
+                  // bottomNavigationBar: Padding(
+                  //   padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  //   child: UiUtils.getSvg(AppIcons.companyLogo),
+                  // ),
                   body: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
