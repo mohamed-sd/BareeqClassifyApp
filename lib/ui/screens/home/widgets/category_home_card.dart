@@ -37,11 +37,31 @@ class CategoryHomeCard extends StatelessWidget {
                 if (isFullImage) ...[
                   ClipRRect(
                     borderRadius: BorderRadius.circular(18),
-                    child: Container(
-                      height: 70,
+                    child:
+                    Container(
+                      height: 105,
                       width: double.infinity,
                       color: context.color.secondaryColor,
-                      child: UiUtils.imageType(url, fit: BoxFit.cover),
+                      child:
+                      Column(children:[
+                        Stack(
+                            alignment: Alignment.bottomCenter,
+                            children:[
+                              UiUtils.imageType( height: 105 , url, fit: BoxFit.fitWidth),
+                              Expanded(
+                                  child:
+                                  Padding(
+                                      padding: EdgeInsets.all(3),
+                                      child: CustomText(
+                                        title,
+                                        textAlign: TextAlign.center,
+                                        maxLines: 3,
+                                        fontSize: context.font.smaller,
+                                        fontWeight:FontWeight.bold,
+                                        color: Colors.amber,
+                                      )))
+                            ])
+                      ]),
                     ),
                   ),
                 ] else ...[
@@ -62,22 +82,22 @@ class CategoryHomeCard extends StatelessWidget {
                           // color: Colors.blue,
                           width: 48,
                           height: 48,
-                          child: UiUtils.imageType(url, fit: BoxFit.cover),
+                          child: UiUtils.imageType(url, fit: BoxFit.fitWidth),
                         ),
                       ),
                     ),
                   ),
                 ],
-                Expanded(
-                    child: Padding(
-                        padding: const EdgeInsets.all(0.0),
-                        child: CustomText(
-                          title,
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          fontSize: context.font.smaller,
-                          color: context.color.textDefaultColor,
-                        )))
+                // Expanded(
+                //     child: Padding(
+                //         padding: const EdgeInsets.all(0.0),
+                //         child: CustomText(
+                //           title,
+                //           textAlign: TextAlign.center,
+                //           maxLines: 2,
+                //           fontSize: context.font.smaller,
+                //           color: context.color.textDefaultColor,
+                //         )))
               ],
             ),
           ),

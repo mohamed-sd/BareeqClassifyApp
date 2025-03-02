@@ -25,7 +25,7 @@ class CategoryWidgetHome extends StatelessWidget {
               padding: const EdgeInsets.only(top: 12),
               child: SizedBox(
                 width: context.screenWidth,
-                height: 103,
+                height: 150,
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   padding: const EdgeInsets.symmetric(

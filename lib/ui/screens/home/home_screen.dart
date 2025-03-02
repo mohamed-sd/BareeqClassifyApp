@@ -178,61 +178,99 @@ class HomeScreenState extends State<HomeScreen>
                 country: HiveUtils.getCountryName(),
                 state: HiveUtils.getStateName());
           },
-          child: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            controller: _scrollController,
-            child: Column(
-              children: [
-                BlocBuilder<FetchHomeScreenCubit, FetchHomeScreenState>(
-                  builder: (context, state) {
-                    if (state is FetchHomeScreenInProgress) {
-                      return shimmerEffect();
-                    }
-                    if (state is FetchHomeScreenSuccess) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const HomeSearchField(),
-                          const SliderWidget(),
-                          const CategoryWidgetHome(),
-                          ...List.generate(state.sections.length, (index) {
-                            HomeScreenSection section = state.sections[index];
-                            if (state.sections.isNotEmpty) {
-                              return HomeSectionsAdapter(
-                                section: section,
-                              );
-                            } else {
-                              return SizedBox.shrink();
-                            }
-                          }),
-                          if (state.sections.isNotEmpty &&
-                              Constant.isGoogleBannerAdsEnabled == "1") ...[
-                            Container(
-                              padding: EdgeInsets.only(top: 5),
-                              margin: EdgeInsets.symmetric(vertical: 10),
-                              child:
-                                  AdBannerWidget(), // Custom widget for banner ad
-                            )
-                          ] else ...[
-                            SizedBox(
-                              height: 10,
-                            )
+          child: Container(
+            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(20),
+                    bottomLeft: Radius.zero,
+                    bottomRight: Radius.zero)),
+            child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
+              controller: _scrollController,
+              child: Column(
+                children: [
+                  BlocBuilder<FetchHomeScreenCubit, FetchHomeScreenState>(
+                    builder: (context, state) {
+                      if (state is FetchHomeScreenInProgress) {
+                        return shimmerEffect();
+                      }
+                      if (state is FetchHomeScreenSuccess) {
+                        return Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            const HomeSearchField(),
+                            Text(
+                              "اهلا بك في إعلانات بريق !",
+                              textAlign: TextAlign.start,
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                            Text(
+                              "حيث نفتح لك ولإعلاناتك وصولا سريعا الي عالم التعدين ",
+                              textAlign: TextAlign.start,
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              "لتصل رسائلك الى المهتمين وتخلق فرصا مشرقة . ",
+                              textAlign: TextAlign.right,
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SliderWidget(),
+                            Text(
+                              "إعلانات التعدين بين يديك",
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                            ),
+                            const CategoryWidgetHome(),
+                            ...List.generate(state.sections.length, (index) {
+                              HomeScreenSection section = state.sections[index];
+                              if (state.sections.isNotEmpty) {
+                                return HomeSectionsAdapter(
+                                  section: section,
+                                );
+                              } else {
+                                return SizedBox.shrink();
+                              }
+                            }),
+                            if (state.sections.isNotEmpty &&
+                                Constant.isGoogleBannerAdsEnabled == "1") ...[
+                              Container(
+                                padding: EdgeInsets.only(top: 5),
+                                margin: EdgeInsets.symmetric(vertical: 10),
+                                child:
+                                    AdBannerWidget(), // Custom widget for banner ad
+                              )
+                            ] else ...[
+                              SizedBox(
+                                height: 10,
+                              )
+                            ],
                           ],
-                        ],
-                      );
-                    }
+                        );
+                      }
 
-                    if (state is FetchHomeScreenFail) {
-                      print('hey bro ${state.error}');
-                    }
-                    return SizedBox.shrink();
-                  },
-                ),
-                const AllItemsWidget(),
-                const SizedBox(
-                  height: 30,
-                )
-              ],
+                      if (state is FetchHomeScreenFail) {
+                        print('hey bro ${state.error}');
+                      }
+                      return SizedBox.shrink();
+                    },
+                  ),
+                  const AllItemsWidget(),
+                  const SizedBox(
+                    height: 30,
+                  )
+                ],
+              ),
             ),
           ),
         ),
